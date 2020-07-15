@@ -1,0 +1,50 @@
+#include "stdio.h"
+#include <QApplication>
+#include <QLabel>
+#include <QDebug>
+#include <QString>
+#include "qlabelclock.h"
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc,argv);
+    //创建界面
+    QWidget *widgetMain = new QWidget();
+
+    //修改参数
+    widgetMain->setWindowTitle("温度");
+    widgetMain->resize(300,150);
+    widgetMain->setStyleSheet("background-color: black");
+
+    //创建标签
+    QLabel *labelTempratureText = new QLabel();
+
+    //修改便签内容
+    labelTempratureText->setText("T-");
+    //设置父控件
+    labelTempratureText->setParent(widgetMain);
+    labelTempratureText->setGeometry(0,50,50,50);
+    labelTempratureText->setStyleSheet("color: white; font-family: Microsoft TaHei; font-size: 20px");
+
+    //创建标签
+    QLabel *labelTempratureData = new QLabel(widgetMain);
+    //修改标签内容
+    labelTempratureData->setText("36.5");
+    labelTempratureData->setGeometry(50,0,150,150);
+    labelTempratureData->setStyleSheet("color: white; font-family: Microsoft TaHei; font-size:70px");
+    //创建标签
+    QLabel *labelTempratureunit = new QLabel(widgetMain);
+    //修改标签内容
+    labelTempratureunit->setText("℃");
+    labelTempratureunit->setGeometry(200,0,250,50);
+    labelTempratureunit->setStyleSheet("color: white; font-family: Microsoft TaHei; font-size: 50px");
+
+    QLabelClock *labelClock = new QLabelClock(widgetMain);
+    labelClock->setGeometry(0, 150-30, 300,30);
+    labelClock->setStyleSheet("color: white");
+    //更新主窗口显示内容
+    widgetMain->show();
+
+    return a.exec();
+
+}
